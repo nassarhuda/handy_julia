@@ -1,3 +1,5 @@
+#TODO list:
+#add documentation to colnormout
 """
 findin_index(x,y) returns a vector v of the same size as that of x
 - where v[i] = index of the element x[i] in the vector y
