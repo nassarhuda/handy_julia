@@ -145,3 +145,27 @@ function sortcolsperm{T}(X::Matrix{T},REV::Bool)
     end
     return P
 end
+
+function colnormout{F}(A::Array{F,2})
+    # col-normalize a matrix
+    ES = enumerate(vec(sum(A,1)))
+    B = zeros(size(A,1),size(A,2))
+    for(col,s) in ES
+        s==0 && continue
+        B[:,col] = A[:,col]/s
+    end
+    return B
+end
+
+function colnormout{F}(P::SparseMatrixCSC{F,Int64})
+    S = vec(sum(P,1))
+    bi,bj,bv = findnz(P)
+    m,n = size(P)
+    vals = bv./S[bj]
+    # get the number or rows and columns in A
+    m,n = size(P)
+    T = sparse(bi,bj,vals,m,n)
+    return T
+end
+
+
