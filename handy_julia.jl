@@ -84,6 +84,18 @@ function writeToSMAT(A,filename)
   end
 end
 
+function readSMAT_FLOAT(filename)
+  rows,header = readdlm(filename;header=true)
+  G = sparse(
+  convert(Array{Int64,1},rows[1:parse(Int,header[3]),1])+1, 
+  convert(Array{Int64,1},rows[1:parse(Int,header[3]),2])+1, 
+  rows[1:parse(Int,header[3]),3],
+  parse(Int,header[1]), 
+  parse(Int,header[2])
+  )
+return G
+end
+
 """
 ismember(A,x,2) returns the indices of rows in A that are equal to x
 ismember(A,x,1) returns the indices of cols in A that are equal to x
