@@ -182,4 +182,32 @@ function colnormout{F}(P::SparseMatrixCSC{F,Int64})
     return T
 end
 
+"""
+print_matrix(A) prints a matrix A to the screen
+```
+example:
+  W = randn(3,3)
+  print_matrix(W)
+```
+"""
+function print_matrix(A)
+  t = eltype(A)
+    if t == Float64
+      p = "%f\t"
+    elseif t == Int64
+      p = "%d\t"
+    else
+      error("other types are not supported")
+    end
+    m,n = size(A)
+    for i = 1:m
+      for j = 1:n
+        c = A[i,j]
+        @eval @printf($p,$c)
+      end
+      println()
+    end
+end
+
+
 
