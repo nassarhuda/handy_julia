@@ -209,5 +209,6 @@ function print_matrix(A)
     end
 end
 
+mywhos(s::String) = whos(Main,Regex("^$s\$"))
 
 
