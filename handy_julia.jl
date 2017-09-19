@@ -211,4 +211,6 @@ end
 
 mywhos(s::String) = whos(Main,Regex("^$s\$"))
 
+matrixrandperm(n::Integer) = sparse(randperm(n),randperm(n),1,n,n)
+
 
